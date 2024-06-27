@@ -27,14 +27,14 @@ def main():
 
     parser = argparse.ArgumentParser(description='Descoberta de parâmetros para poc XSS')
     parser.add_argument('-d', '--domain', help='Nome de domínio do alvo [ex : exemplo.com.br]', required=True)
-    parser.add_argument('-s', '--subs', help='Set False for no subs [ex : --subs False ]', default=True)
-    parser.add_argument('-l', '--level', help='For nested parameters [ex : --level high]')
-    parser.add_argument('-e', '--exclude', help='extensions to exclude [ex --exclude php,aspx]')
-    parser.add_argument('-o', '--output', help='Output file name [by default it is \'domain.txt\']')
-    parser.add_argument('-p', '--placeholder', help='The string to add as a placeholder after the parameter name.',
+    parser.add_argument('-s', '--subs', help='Defina Falso para não substituir [ex : --subs False ]', default=True)
+    parser.add_argument('-l', '--level', help='Para parâmetros aninhados [ex : --level high]')
+    parser.add_argument('-e', '--exclude', help='Extensões para excluir [ex --exclude php,aspx]')
+    parser.add_argument('-o', '--output', help='Nome do arquivo de saída [por padrão é  \'domain.txt\']')
+    parser.add_argument('-p', '--placeholder', help='A string para adicionar como placeholder após o nome do parâmetro.',
                         default="FUZZ")
-    parser.add_argument('-q', '--quiet', help='Do not print the results to the screen', action='store_true')
-    parser.add_argument('-r', '--retries', help='Specify number of retries for 4xx and 5xx errors', default=3)
+    parser.add_argument('-q', '--quiet', help='Não imprima os resultados na tela', action='store_true')
+    parser.add_argument('-r', '--retries', help='Especifique o número de tentativas para erros 4xx e 5xx', default=3)
     args = parser.parse_args()
 
     if args.subs == True or " True":
@@ -66,7 +66,7 @@ def main():
         black_list = []  # for blacklists
     if args.exclude:
         print(
-            f"\u001b[31m[!] URLS containing these extensions will be excluded from the results   : {black_list}\u001b[0m\n")
+            f"\u001b[31m[!] URLs contendo essas extensões serão excluídas dos resultados. : {black_list}\u001b[0m\n")
 
     # Optimizado para extrair com set para encontrar URLs únicas mais rápido
     final_uris = set(extractor.param_extract(response, args.level, black_list, args.placeholder))
@@ -77,17 +77,17 @@ def main():
         print('\n'.join(final_uris))
         print("\u001b[0m")
 
-    print(f"\n\u001b[32m[+] Total number of retries:  {retries - 1}\u001b[31m")
-    print(f"\u001b[32m[+] Total unique urls found : {len(final_uris)}\u001b[31m")
+    print(f"\n\u001b[32m[+] Número total de tentativas: {retries - 1}\u001b[31m")
+    print(f"\u001b[32m[+] Total de URLs exclusivas encontradas: {len(final_uris)}\u001b[31m")
     if args.output:
         if "/" in args.output:
-            print(f"\u001b[32m[+] Output is saved here :\u001b[31m \u001b[36m{args.output}\u001b[31m")
+            print(f"\u001b[32m[+] A saída é salva aqui :\u001b[31m \u001b[36m{args.output}\u001b[31m")
 
         else:
-            print(f"\u001b[32m[+] Output is saved here :\u001b[31m \u001b[36moutput/{args.output}\u001b[31m")
+            print(f"\u001b[32m[+] A saída é salva aqui :\u001b[31m \u001b[36moutput/{args.output}\u001b[31m")
     else:
-        print(f"\u001b[32m[+] Output is saved here   :\u001b[31m \u001b[36moutput/{args.domain}.txt\u001b[31m")
-    print("\n\u001b[31m[!] Total execution time      : %ss\u001b[0m" % str((time.time() - start_time))[:-12])
+        print(f"\u001b[32m[+] A saída é salva aqui   :\u001b[31m \u001b[36moutput/{args.domain}.txt\u001b[31m")
+    print("\n\u001b[31m[!] tempo total de execução     : %ss\u001b[0m" % str((time.time() - start_time))[:-12])
 
 
 if __name__ == "__main__":
