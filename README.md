@@ -1,9 +1,9 @@
 # CheckParams
 
-Descrição da Ferramenta (CheckParams):
 A ferramenta “CheckParams” é uma solução que busca e gera um arquivo de parâmetros encontrados nas URLs.
 
 Ela pode ser usada para:
+
 Analisar URLs e extrair os parâmetros presentes.
 
 Gerar um arquivo de texto contendo esses parâmetros.
