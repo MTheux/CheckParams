@@ -23,6 +23,3 @@ Gerar um arquivo de texto (por exemplo, um arquivo .txt) com os parâmetros enco
 Script XSSCheck:
 O script “XSSCheck” é responsável por executar a prova de conceito (PoC) de XSS.
 
-Explique como ele funciona e como os testes de XSS são realizados.
-
-Lembre-se de enfatizar a importância de usar essa ferramenta com responsabilidade e apenas em sistemas que você tem permissão para testar.
