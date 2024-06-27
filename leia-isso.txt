@@ -1,3 +1,3 @@
 1) Execute > python3 CheckParams.py -d testphp.vulnweb.com 
 2) Entre no Diretorio Output.
-3) cat  cat .\testphp.vulnweb.com.txt | python3 XssCheck.py "<script>"
+3) cat url.txt | python3 XssCheck.py "<script>"
